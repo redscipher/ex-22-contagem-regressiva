@@ -1,0 +1,18 @@
+{
+  "name": "pr-mod-22",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel ./src/html/index.html ./src/html/contador.html ./src/less/config.less ./src/sass/index.scss ./src/js/index.js",
+    "build": "parcel build ./src/html/index.html ./src/html/contador.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@parcel/transformer-less": "^2.12.0",
+    "@parcel/transformer-sass": "^2.12.0",
+    "parcel": "^2.12.0",
+    "sharp": "^0.31.1"
+  }
+}

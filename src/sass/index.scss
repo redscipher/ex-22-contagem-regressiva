@@ -1,0 +1,70 @@
+// classes
+.corpo{
+    // fonte principal p/ ser usada na pagina toda
+    font-family: "Foldit", sans-serif;
+    font-style: normal;
+    font-size: 18px;
+    // define imagem de fundo p/ ocupar toda tela
+    background-size: cover;
+    background-repeat: no-repeat;
+    // tamanho
+    width: 100vw;
+    height: 100vh;
+
+    // variacoes p/ imagem de fundo
+    &__inicial{
+        background-image: url('../../imagens/champagner-1071356_1920.jpg');
+    }
+
+    &__contador{
+        background-image: url('../../imagens/hourglass-8773245_1920.png');
+    }
+    
+    // eventos
+    &::before{
+        // conteudo p/ ser inserido antes ==> vazio
+        content: '';
+        // posicionamento
+        position: absolute;
+        // tamanho
+        width: 100vw;
+        height: 100vh;
+        // visual
+        opacity: 0.7;
+        background-color: #000;
+        // joga elemento p/ traz no vetor exibicao
+        z-index: -1;
+    }
+}
+
+.form-container{
+    height: 85vh;
+}
+
+.btn{
+    height: 56px;
+    // define espacamento entre as letras
+    letter-spacing: 10px;
+}
+
+.rodape{   
+    // fonte
+    font-family: "Kalnia Glaze", serif;
+    font-size: 12px;
+    font-style: normal;
+    // visualizacao: diplay
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    // espacameno entre as letras
+    letter-spacing: 3px;
+    // margens
+    margin-top: 40px;
+
+    span{
+        a{
+            color: #ccc;
+        }
+    }
+}
