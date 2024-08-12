@@ -15,14 +15,6 @@
     &__inicial{
         background-image: url('../../imagens/champagner-1071356_1920.jpg');
     }
-
-    &__contador{
-        background-image: url('../../imagens/hourglass-8773245_1920.png');
-        // fonte
-        font-family: "Kalnia Glaze", serif;
-        font-size: 18px;
-        font-style: normal;
-    }
     
     // eventos
     &::before{
@@ -54,17 +46,10 @@
     // espacameno entre as letras
     letter-spacing: 3px;
     // margens
-    margin-top: 40px;
+    margin-top: 100px;
 
-    &__contador{
-        background-image: url('../../imagens/hourglass-8773245_1920.png');
-        // fonte
-        font-family: "Foldit", sans-serif;
-        font-style: normal;
-        font-size: 12px;
-    }
-
-    span{
+    // elementos
+    strong{
         a{
             color: #ccc;
         }
@@ -72,7 +57,11 @@
 }
 
 .form-container{
-    height: 85vh;
+    height: 60vh;
+
+    &__contador{
+        height: 20vh;
+    }
 }
 
 .btn{

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel ./src/html/index.html ./src/html/contador.html ./src/less/config.less ./src/sass/index.scss ./src/js/index.js",
-    "build": "parcel build ./src/html/index.html ./src/html/contador.html"
+    "dev": "parcel ./src/html/index.html ./src/sass/index.scss ./src/js/index.js",
+    "build": "parcel build ./src/html/index.html"
   },
   "author": "",
   "license": "ISC",

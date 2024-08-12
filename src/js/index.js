@@ -1,6 +1,7 @@
 //variaveis
-let flgJQuery = false, flgBoot = false;
-let dtaNasc;
+let flgJQuery = false, flgBoot = false, flgInicia = false;
+let dtaNasc, dtaEvento, dtaEventoTms;
+let tempoAtual;
 
 // ativa modo sem conflitos JQuery
 let $j = jQuery.noConflict();
@@ -44,12 +45,8 @@ let validaFormulario = function(e){
                 // pega o campo input
                 const campo = $j('#id-data');
                 dtaNasc = campo.val();
-                // exibicao
-                alert(dtaNasc);
-                // redireciona para a página especificada
-                setInterval(()=>{
-                    window.location.href = './html/contador.html';
-                }, 1000)
+                // inicia cronometro
+                flgInicia = true;
             }
             else{
                 // para execucao
@@ -60,6 +57,38 @@ let validaFormulario = function(e){
         console.log(error.message);
     }
 }
+
+// comportamentos
+let contaTempo = function(){
+    try {
+        // validacao
+        if (flgBoot && flgJQuery && flgInicia) {
+            // data atual
+            const agora = new Date();
+            const dtaAtualTms = agora.getTime();
+            // tempo ate o evento principal
+            const tempoAteEvento = dtaEventoTms - dtaAtualTms;
+            // conversao dos tempos
+            const segundoEmMs = 1000;
+            const minutoEmMs = segundoEmMs * 60;
+            const horaEmMs = minutoEmMs * 60;
+            const diaEmMs = horaEmMs * 24;
+            const mesEmMs = diaEmMs * 30;
+            const anoEmMs = mesEmMs * 12;
+            // calculo
+            const tempoSegundos = Math.floor(tempoAteEvento / 1000);
+            console.log('segundos: ' + tempoSegundos);
+            // exibicao
+            // const mensagem = (tempoDias + 'd ' + tempoHoras + 'h ' + tempoMinutos + 'm ' + tempoSegundos + 's');
+            // $j('#id-contador').innerHTML = mensagem;
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+// acoes
+tempoAtual = setInterval(contaTempo, 1000);
 
 // == eventos validadcao
 // DOM
