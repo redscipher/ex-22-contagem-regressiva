@@ -1,6 +1,6 @@
 //variaveis
 let flgJQuery = false, flgBoot = false, flgInicia = false;
-let dtaNasc, dtaEvento, dtaEventoTms;
+let dtaNasc, dtaEvento, dtaEventoTms, dtaEvAniTms;
 let tempoAtual;
 
 // ativa modo sem conflitos JQuery
@@ -45,6 +45,19 @@ let validaFormulario = function(e){
                 // pega o campo input
                 const campo = $j('#id-data');
                 dtaNasc = campo.val();
+                // dia atual
+                const dtaHoje = new Date();
+                // inicia variaveis
+                dtaEvento = new Date(dtaNasc);
+                dtaEventoTms = dtaEvento.getTime();
+                // data do proximo aniversario
+                let anos = dtaHoje.getFullYear() - dtaEvento.getFullYear()
+                dtaEvento.setFullYear(dtaEvento.getFullYear() + anos);
+                // tratameto
+                if (dtaHoje.getTime() > dtaEvento.getTime()) {
+                    dtaEvento.setFullYear(dtaEvento.getFullYear() + 1);
+                }
+                dtaEvAniTms = dtaEvento.getTime();
                 // inicia cronometro
                 flgInicia = true;
             }
@@ -63,25 +76,67 @@ let contaTempo = function(){
     try {
         // validacao
         if (flgBoot && flgJQuery && flgInicia) {
-            // data atual
-            const agora = new Date();
-            const dtaAtualTms = agora.getTime();
-            // tempo ate o evento principal
-            const tempoAteEvento = dtaEventoTms - dtaAtualTms;
-            // conversao dos tempos
-            const segundoEmMs = 1000;
-            const minutoEmMs = segundoEmMs * 60;
-            const horaEmMs = minutoEmMs * 60;
-            const diaEmMs = horaEmMs * 24;
-            const mesEmMs = diaEmMs * 30;
-            const anoEmMs = mesEmMs * 12;
-            // calculo
-            const tempoSegundos = Math.floor(tempoAteEvento / 1000);
-            console.log('segundos: ' + tempoSegundos);
-            // exibicao
-            // const mensagem = (tempoDias + 'd ' + tempoHoras + 'h ' + tempoMinutos + 'm ' + tempoSegundos + 's');
-            // $j('#id-contador').innerHTML = mensagem;
+            // calculo da idade
+            contaIdade();
+            // calcula data ate aniversario
+            contaAniversario();
         }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+let contaIdade = function(){
+    try {
+        // data atual
+        const agora = new Date();
+        const dtaAtualTms = agora.getTime();
+        // tempo ate o evento principal
+        const tempoAteEvento = dtaAtualTms - dtaEventoTms;
+        // conversao tempo
+        const anoEmMs = 1000 * 60 * 60 * 24 * 30 * 12;
+        const mesEmMs = 1000 * 60 * 60 * 24 * 30;
+        const diaEmMs = 1000 * 60 * 60 * 24;
+        const horaEmMs = 1000 * 60 * 60;
+        const minutoEmMs = 1000 * 60;
+        // calculo
+        const tempoAnos = Math.floor(tempoAteEvento / anoEmMs);
+        const tempoMeses = Math.floor((tempoAteEvento % anoEmMs) / mesEmMs);
+        const tempoDias = Math.floor((tempoAteEvento % mesEmMs) / diaEmMs);
+        const tempoHoras = Math.floor((tempoAteEvento % diaEmMs) / horaEmMs);
+        const tempoMinutos = Math.floor((tempoAteEvento % horaEmMs) / minutoEmMs);
+        const tempoSegundos = Math.floor((tempoAteEvento % minutoEmMs) / 1000);
+        // exibicao
+        let mensagem = (tempoAnos + 'a ' + tempoMeses + 'M '+ tempoDias + 'd ' + tempoHoras + 'h ' + tempoMinutos + 'm ' + tempoSegundos + 's');
+        $j('#id-idade').text(mensagem);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+let contaAniversario = function(){
+    try {
+        // data atual
+        const agora = new Date();
+        const dtaAtualTms = agora.getTime();
+        // tempo ate o evento principal
+        const tempoAteEvento = dtaEvAniTms - dtaAtualTms;
+        // conversao tempo
+        const anoEmMs = 1000 * 60 * 60 * 24 * 30 * 12;
+        const mesEmMs = 1000 * 60 * 60 * 24 * 30;
+        const diaEmMs = 1000 * 60 * 60 * 24;
+        const horaEmMs = 1000 * 60 * 60;
+        const minutoEmMs = 1000 * 60;
+        // calculo
+        const tempoAnos = Math.floor(tempoAteEvento / anoEmMs);
+        const tempoMeses = Math.floor((tempoAteEvento % anoEmMs) / mesEmMs);
+        const tempoDias = Math.floor((tempoAteEvento % mesEmMs) / diaEmMs);
+        const tempoHoras = Math.floor((tempoAteEvento % diaEmMs) / horaEmMs);
+        const tempoMinutos = Math.floor((tempoAteEvento % horaEmMs) / minutoEmMs);
+        const tempoSegundos = Math.floor((tempoAteEvento % minutoEmMs) / 1000);
+        // exibicao
+        let mensagem = (tempoAnos + 'a ' + tempoMeses + 'M '+ tempoDias + 'd ' + tempoHoras + 'h ' + tempoMinutos + 'm ' + tempoSegundos + 's');
+        $j('#id-tmp-aniversario').text(mensagem);
     } catch (error) {
         console.log(error.message);
     }
