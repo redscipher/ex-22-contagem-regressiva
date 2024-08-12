@@ -137,6 +137,13 @@ let contaAniversario = function(){
         // exibicao
         let mensagem = (tempoAnos + 'a ' + tempoMeses + 'M '+ tempoDias + 'd ' + tempoHoras + 'h ' + tempoMinutos + 'm ' + tempoSegundos + 's');
         $j('#id-tmp-aniversario').text(mensagem);
+        // validacao p/ encerrar
+        if (tempoAteEvento <= 0) {
+            clearInterval(tempoAtual);
+            // reseta
+            $j('#id-tmp-aniversario').text("Feliz aniversário!");
+            $j('#id-idade').text("Feliz aniversário!");
+        }
     } catch (error) {
         console.log(error.message);
     }
