@@ -1,6 +1,6 @@
 //variaveis
 let flgJQuery = false, flgBoot = false, flgInicia = false;
-let dtaNasc, dtaEvento, dtaEventoTms, dtaEvAniTms;
+let dtaNasc, dtaEvento, dtaEventoTms, dtaEvAniTms, dtaTemp;
 let tempoAtual;
 
 // ativa modo sem conflitos JQuery
@@ -50,14 +50,16 @@ let validaFormulario = function(e){
                 // inicia variaveis
                 dtaEvento = new Date(dtaNasc);
                 dtaEventoTms = dtaEvento.getTime();
+                dtaTemp = dtaEventoTms
                 // data do proximo aniversario
                 let anos = dtaHoje.getFullYear() - dtaEvento.getFullYear()
                 dtaEvento.setFullYear(dtaEvento.getFullYear() + anos);
-                // tratameto
+                // tratamento
                 if (dtaHoje.getTime() > dtaEvento.getTime()) {
                     dtaEvento.setFullYear(dtaEvento.getFullYear() + 1);
                 }
                 dtaEvAniTms = dtaEvento.getTime();
+                dtaEventoTms = dtaTemp;
                 // inicia cronometro
                 flgInicia = true;
             }
@@ -94,7 +96,7 @@ let contaIdade = function(){
         // tempo ate o evento principal
         const tempoAteEvento = dtaAtualTms - dtaEventoTms;
         // conversao tempo
-        const anoEmMs = 1000 * 60 * 60 * 24 * 30 * 12;
+        const anoEmMs = 1000 * 60 * 60 * 24 * 365;
         const mesEmMs = 1000 * 60 * 60 * 24 * 30;
         const diaEmMs = 1000 * 60 * 60 * 24;
         const horaEmMs = 1000 * 60 * 60;
@@ -122,7 +124,7 @@ let contaAniversario = function(){
         // tempo ate o evento principal
         const tempoAteEvento = dtaEvAniTms - dtaAtualTms;
         // conversao tempo
-        const anoEmMs = 1000 * 60 * 60 * 24 * 30 * 12;
+        const anoEmMs = 1000 * 60 * 60 * 24 * 365;
         const mesEmMs = 1000 * 60 * 60 * 24 * 30;
         const diaEmMs = 1000 * 60 * 60 * 24;
         const horaEmMs = 1000 * 60 * 60;
