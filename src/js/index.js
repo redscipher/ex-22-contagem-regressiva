@@ -96,11 +96,11 @@ let contaIdade = function(){
         // tempo ate o evento principal
         const tempoAteEvento = dtaAtualTms - dtaEventoTms;
         // conversao tempo
-        const anoEmMs = 1000 * 60 * 60 * 24 * 365;
-        const mesEmMs = 1000 * 60 * 60 * 24 * 30;
-        const diaEmMs = 1000 * 60 * 60 * 24;
-        const horaEmMs = 1000 * 60 * 60;
         const minutoEmMs = 1000 * 60;
+        const horaEmMs = minutoEmMs * 60;
+        const diaEmMs = horaEmMs * 24;
+        const mesEmMs = diaEmMs * 30;
+        const anoEmMs = diaEmMs * 365;
         // calculo
         const tempoAnos = Math.floor(tempoAteEvento / anoEmMs);
         const tempoMeses = Math.floor((tempoAteEvento % anoEmMs) / mesEmMs);
@@ -124,11 +124,11 @@ let contaAniversario = function(){
         // tempo ate o evento principal
         const tempoAteEvento = dtaEvAniTms - dtaAtualTms;
         // conversao tempo
-        const anoEmMs = 1000 * 60 * 60 * 24 * 365;
-        const mesEmMs = 1000 * 60 * 60 * 24 * 30;
-        const diaEmMs = 1000 * 60 * 60 * 24;
-        const horaEmMs = 1000 * 60 * 60;
         const minutoEmMs = 1000 * 60;
+        const horaEmMs = minutoEmMs * 60;
+        const diaEmMs = horaEmMs * 24;
+        const mesEmMs = diaEmMs * 30;
+        const anoEmMs = diaEmMs * 365;
         // calculo
         const tempoAnos = Math.floor(tempoAteEvento / anoEmMs);
         const tempoMeses = Math.floor((tempoAteEvento % anoEmMs) / mesEmMs);
@@ -161,6 +161,3 @@ document.addEventListener('DOMContentLoaded', inicializaBootstrap);
 $j(document).ready(inicializaJQuery);
 // eventos
 $j('#id-form').on('submit', validaFormulario);
-
-
-
