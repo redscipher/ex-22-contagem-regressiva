@@ -1,41 +1,16 @@
-//variaveis
-let flgJQuery = false, flgBoot = false, flgInicia = false;
-let dtaNasc, dtaEvento, dtaEventoTms, dtaEvAniTms, dtaTemp;
-let tempoAtual;
-
 // ativa modo sem conflitos JQuery
 let $j = jQuery.noConflict();
 
-//funcoes inicializacao
-let inicializaJQuery = function(){
-    try {
-        //exibe mensagem
-        console.log('JQuery: pronto.');
-        /////////////////
-        flgJQuery = true;
-    } catch (error) {
-        flgJQuery = false;
-        console.log(error.message);
-    }
-}
+// carregamento jquery
+$j(document).ready(()=>{
+    //variaveis
+    let flgInicia = false;
+    let dtaNasc, dtaEvento, dtaEventoTms, dtaEvAniTms, dtaTemp;
+    let tempoAtual;
 
-let inicializaBootstrap = function(){
-    try {
-        //exibe mensagem
-        console.log('Bootstrap: pronto.');
-        ///////////////
-        flgBoot = true;
-    } catch (error) {
-        flgBoot = false;
-        console.log(error.message);
-    }
-}
-
-// funcionamentos
-let validaFormulario = function(e){
-    try {
-        // validacao
-        if (flgJQuery && flgBoot) {
+    // funcionamentos
+    let validaFormulario = function(e){
+        try {
             // para evento
             e.preventDefault();
             // validacao
@@ -67,97 +42,89 @@ let validaFormulario = function(e){
                 // para execucao
                 e.stopPropagation();
             }
+        } catch (error) {
+            console.log(error.message);
         }
-    } catch (error) {
-        console.log(error.message);
     }
-}
 
-// comportamentos
-let contaTempo = function(){
-    try {
-        // validacao
-        if (flgBoot && flgJQuery && flgInicia) {
+    // comportamentos
+    let contaTempo = function(){
+        try {
             // calculo da idade
             contaIdade();
             // calcula data ate aniversario
             contaAniversario();
+        } catch (error) {
+            console.log(error.message);
         }
-    } catch (error) {
-        console.log(error.message);
     }
-}
 
-let contaIdade = function(){
-    try {
-        // data atual
-        const agora = new Date();
-        const dtaAtualTms = agora.getTime();
-        // tempo ate o evento principal
-        const tempoAteEvento = dtaAtualTms - dtaEventoTms;
-        // conversao tempo
-        const minutoEmMs = 1000 * 60;
-        const horaEmMs = minutoEmMs * 60;
-        const diaEmMs = horaEmMs * 24;
-        const mesEmMs = diaEmMs * 30;
-        const anoEmMs = diaEmMs * 365;
-        // calculo
-        const tempoAnos = Math.floor(tempoAteEvento / anoEmMs);
-        const tempoMeses = Math.floor((tempoAteEvento % anoEmMs) / mesEmMs);
-        const tempoDias = Math.floor((tempoAteEvento % mesEmMs) / diaEmMs);
-        const tempoHoras = Math.floor((tempoAteEvento % diaEmMs) / horaEmMs);
-        const tempoMinutos = Math.floor((tempoAteEvento % horaEmMs) / minutoEmMs);
-        const tempoSegundos = Math.floor((tempoAteEvento % minutoEmMs) / 1000);
-        // exibicao
-        let mensagem = (tempoAnos + 'a ' + tempoMeses + 'M '+ tempoDias + 'd ' + tempoHoras + 'h ' + tempoMinutos + 'm ' + tempoSegundos + 's');
-        $j('#id-idade').text(mensagem);
-    } catch (error) {
-        console.log(error.message);
-    }
-}
-
-let contaAniversario = function(){
-    try {
-        // data atual
-        const agora = new Date();
-        const dtaAtualTms = agora.getTime();
-        // tempo ate o evento principal
-        const tempoAteEvento = dtaEvAniTms - dtaAtualTms;
-        // conversao tempo
-        const minutoEmMs = 1000 * 60;
-        const horaEmMs = minutoEmMs * 60;
-        const diaEmMs = horaEmMs * 24;
-        const mesEmMs = diaEmMs * 30;
-        const anoEmMs = diaEmMs * 365;
-        // calculo
-        const tempoAnos = Math.floor(tempoAteEvento / anoEmMs);
-        const tempoMeses = Math.floor((tempoAteEvento % anoEmMs) / mesEmMs);
-        const tempoDias = Math.floor((tempoAteEvento % mesEmMs) / diaEmMs);
-        const tempoHoras = Math.floor((tempoAteEvento % diaEmMs) / horaEmMs);
-        const tempoMinutos = Math.floor((tempoAteEvento % horaEmMs) / minutoEmMs);
-        const tempoSegundos = Math.floor((tempoAteEvento % minutoEmMs) / 1000);
-        // exibicao
-        let mensagem = (tempoAnos + 'a ' + tempoMeses + 'M '+ tempoDias + 'd ' + tempoHoras + 'h ' + tempoMinutos + 'm ' + tempoSegundos + 's');
-        $j('#id-tmp-aniversario').text(mensagem);
-        // validacao p/ encerrar
-        if (tempoAteEvento <= 0) {
-            clearInterval(tempoAtual);
-            // reseta
-            $j('#id-tmp-aniversario').text("Feliz aniversário!");
-            $j('#id-idade').text("Feliz aniversário!");
+    let contaIdade = function(){
+        try {
+            // data atual
+            const agora = new Date();
+            const dtaAtualTms = agora.getTime();
+            // tempo ate o evento principal
+            const tempoAteEvento = dtaAtualTms - dtaEventoTms;
+            // conversao tempo
+            const minutoEmMs = 1000 * 60;
+            const horaEmMs = minutoEmMs * 60;
+            const diaEmMs = horaEmMs * 24;
+            const mesEmMs = diaEmMs * 30;
+            const anoEmMs = diaEmMs * 365;
+            // calculo
+            const tempoAnos = Math.floor(tempoAteEvento / anoEmMs);
+            const tempoMeses = Math.floor((tempoAteEvento % anoEmMs) / mesEmMs);
+            const tempoDias = Math.floor((tempoAteEvento % mesEmMs) / diaEmMs);
+            const tempoHoras = Math.floor((tempoAteEvento % diaEmMs) / horaEmMs);
+            const tempoMinutos = Math.floor((tempoAteEvento % horaEmMs) / minutoEmMs);
+            const tempoSegundos = Math.floor((tempoAteEvento % minutoEmMs) / 1000);
+            // exibicao
+            let mensagem = (tempoAnos + 'a ' + tempoMeses + 'M '+ tempoDias + 'd ' + tempoHoras + 'h ' + tempoMinutos + 'm ' + tempoSegundos + 's');
+            $j('#id-idade').text(mensagem);
+        } catch (error) {
+            console.log(error.message);
         }
-    } catch (error) {
-        console.log(error.message);
     }
-}
 
-// acoes
-tempoAtual = setInterval(contaTempo, 1000);
+    let contaAniversario = function(){
+        try {
+            // data atual
+            const agora = new Date();
+            const dtaAtualTms = agora.getTime();
+            // tempo ate o evento principal
+            const tempoAteEvento = dtaEvAniTms - dtaAtualTms;
+            // conversao tempo
+            const minutoEmMs = 1000 * 60;
+            const horaEmMs = minutoEmMs * 60;
+            const diaEmMs = horaEmMs * 24;
+            const mesEmMs = diaEmMs * 30;
+            const anoEmMs = diaEmMs * 365;
+            // calculo
+            const tempoAnos = Math.floor(tempoAteEvento / anoEmMs);
+            const tempoMeses = Math.floor((tempoAteEvento % anoEmMs) / mesEmMs);
+            const tempoDias = Math.floor((tempoAteEvento % mesEmMs) / diaEmMs);
+            const tempoHoras = Math.floor((tempoAteEvento % diaEmMs) / horaEmMs);
+            const tempoMinutos = Math.floor((tempoAteEvento % horaEmMs) / minutoEmMs);
+            const tempoSegundos = Math.floor((tempoAteEvento % minutoEmMs) / 1000);
+            // exibicao
+            let mensagem = (tempoAnos + 'a ' + tempoMeses + 'M '+ tempoDias + 'd ' + tempoHoras + 'h ' + tempoMinutos + 'm ' + tempoSegundos + 's');
+            $j('#id-tmp-aniversario').text(mensagem);
+            // validacao p/ encerrar
+            if (tempoAteEvento <= 0) {
+                clearInterval(tempoAtual);
+                // reseta
+                $j('#id-tmp-aniversario').text("Feliz aniversário!");
+                $j('#id-idade').text("Feliz aniversário!");
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
 
-// == eventos validadcao
-// DOM
-document.addEventListener('DOMContentLoaded', inicializaBootstrap);
-// JQuery
-$j(document).ready(inicializaJQuery);
-// eventos
-$j('#id-form').on('submit', validaFormulario);
+    // acoes
+    tempoAtual = setInterval(contaTempo, 1000);
+
+    // eventos
+    $j('#id-form').on('submit', validaFormulario);
+});

@@ -1,3 +1,6 @@
+// importacoes
+@use '../variaveis';
+
 // classes
 .corpo{
     // fonte principal p/ ser usada na pagina toda
@@ -27,7 +30,7 @@
         height: 100vh;
         // visual
         opacity: 0.9;
-        background-color: #000;
+        background-color: variaveis.$corFundo;
         // joga elemento p/ traz no vetor exibicao
         z-index: -1;
     }
@@ -51,7 +54,7 @@
     // elementos
     strong{
         a{
-            color: #ccc;
+            color: variaveis.$corTexto;
         }
     }
 }
